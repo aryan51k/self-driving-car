@@ -1,0 +1,1 @@
+    # motor.move(0.05, curve_val*sen, 0.2)

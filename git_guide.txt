@@ -1,0 +1,33 @@
+1. Clone the repository(Only the first time you start the project). 
+Command — > git clone <url>
+
+2. Create a branch from Main and name the branch(keep name of the the bug you are solving).
+Command —> git checkout -b <branch name>
+
+3. Check if you are in that brach which you have created.
+Command —> git branch (It should return your current branch name).
+
+4. Pull the code from the Main branch to your local branch that you have created.
+Command —> git pull origin Main (Use Master etc according to the name of the main branch accordingly).
+
+5. Develop your project, make changes, add files etc.
+
+6. Add those file/modifications to git.
+Command —> git add . (alternatively you canoes the name of files in place of . but . adds all the modified files)
+
+7. Commit those files to the git with a message related to what you have done so its easy to track for all.
+Command —> git commit -m “<your message>”
+
+8. Check the status of all the files if any file is remaining or not etc.
+Command —> git status
+
+9. Push the code to git using your local branch(Always do not modify main).
+Command —> git push --set-upstream origin <local branch name>  
+
+10. Go to GitHub/ git server create a pull request from your branch and merge it with main if it is safe to merge and delete your branch from GitHub/git server. If there is a problem merging the branch you have messed something up please check.
+
+11. Delete the local branch. 
+Command —> git branch -d <local branch name>
+
+
+That’s It good to go for the next one!!!!
