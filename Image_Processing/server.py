@@ -79,7 +79,7 @@ def get_curve(img, display = 2):
     
 
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     server_socket = socket.socket()
     server_socket.bind((sys.argv[1], int(sys.argv[2])))  
     server_socket.listen(0)
@@ -96,16 +96,16 @@ if __name__ == "_main_":
             image_stream.write(connection.read(image_len))
             image_stream.seek(0)
             image = Image.open(image_stream)
-            im = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-            video = im
-            initial_trackbar_val = [131, 176, 85, 240]
-            utils.initialize_trackbar(initial_trackbar_val)
-            frameCounter = 0
-            success, img = video.read()    
+            img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
             img = cv2.resize(img, (480, 240))
             curve = get_curve(img)
             cv2.imshow("Vid", img)
-            cv2.waitKey(1)            
+            cv2.waitKey(1)
+            # Initialize the trackbar once for the incoming stream
+            if frameCounter == 0:
+                initial_trackbar_val = [131, 176, 85, 240]
+                utils.initialize_trackbar(initial_trackbar_val)
+            frameCounter += 1
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         cv2.destroyAllWindows()
@@ -113,19 +113,3 @@ if __name__ == "_main_":
         connection.close()
         server_socket.close()
 
-
-    #video = cv2.VideoCapture('Image_Processing/left.avi')
-    initial_trackbar_val = [131, 176, 85, 240]
-    utils.initialize_trackbar(initial_trackbar_val)
-    frameCounter = 0
-    while True:
-        frameCounter +=1
-        if video.get(cv2.CAP_PROP_FRAME_COUNT) ==frameCounter:
-            video.set(cv2.CAP_PROP_POS_FRAMES,0)
-            frameCounter=0
-        
-        success, img = video.read()    
-        img = cv2.resize(img, (480, 240))
-        curve = get_curve(img)
-        cv2.imshow("Vid", img)
-        cv2.waitKey(1)
